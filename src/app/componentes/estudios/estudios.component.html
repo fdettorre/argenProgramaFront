@@ -1,0 +1,173 @@
+<div class="card mat-card contenedor">
+
+    <div class="card-titles" style="float: left;">
+        <h2> Estudios </h2>
+        <!-- <div class="btn-edit">
+            <a href="#" class="btn-right"> <i class="fa fa-pen"></i> </a>
+        </div> -->
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <h5>Títulos y certificados</h5>
+        </div>
+        <div class="col-md-2">
+            <a class="btn btn-right" data-bs-toggle="modal" data-bs-target="#addModalEstudio">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="card mb-3" style="max-width: 840px;" *ngFor="let estu of estudios">
+        <div class="row g-0">
+            <div class="col-md-2">
+                <img src="{{estu.imagen}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-10">
+                <div class="card-body">
+                    <div class="row">
+                        <h4 class="col-md-10 card-title">Titulo: {{estu.titulo}}</h4>
+                        <div class="col-md-2">
+                            <a class="btn btn-right" data-bs-toggle="modal" data-bs-target="#editModalEstudio" (click)="onGetEstudios(estu)">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a class="btn btn-right" data-bs-toggle="modal" data-bs-target="#delModalEstudio" (click)="onGetEstudios(estu)">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h6 class="card-text">Inicio: {{estu.fechaInicio}}</h6>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="card-text" *ngIf="estu.fechaFin == null">En Curso</h6>
+                                <h6 class="card-text" *ngIf="estu.fechaFin != null">Graduación: {{estu.fechaFin}}</h6>
+                            </div>
+                        </div>
+                        <p class="card-text" *ngIf="estu.promedio == null">Promedio General: En Desarrollo</p>
+                        <p class="card-text" *ngIf="estu.promedio != null"> Promedio Gral: {{estu.promedio}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModalEstudio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEstudioLabel">Agregar Nivel de Estudio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #addForm="ngForm" (ngSubmit)="onAddEstudios(addForm)">
+                        <!-- ... -->
+                        <div class="mb-3 form-group">
+                            <label for="nombreEstudio" class="form-label">Nombre Establecimiento</label>
+                            <input class="form-control form-control-sm" ngModel name="nombre" id="nombre" type="text" placeholder="Escriba el nombre de la institución" aria-label=".form-control-sm example" required>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="tituloEstudio" class="form-label">Título</label>
+                            <input class="form-control form-control-sm" ngModel name="titulo" id="titulo" type="text" placeholder="Escriba el título obtenido/a obtener" aria-label=".form-control-sm example" required>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="FechaInEstudio" class="form-label">Fecha Inicio</label>
+                            <input class="form-control form-control-sm" ngModel name="fechaInicio" id="fechaInicio" type="date" placeholder="Ingrese la fecha de inicio" aria-label=".form-control-sm example" required>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="FechaFinEstudio" class="form-label">Fecha Finalización</label>
+                            <input class="form-control form-control-sm" ngModel name="fechaFin" id="fechaFin" type="date" placeholder="Ingrese la fecha de graduación" aria-label=".form-control-sm example">
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="tareasEstudio" class="form-label">Promedio logrado</label>
+                            <input class="form-control form-control-sm" ngModel name="promedio" id="promedio" type="text" placeholder="Detalle el promedio logrado" aria-label=".form-control-sm example">
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="imagenEstudio" class="form-label">URL de la Imagen</label>
+                            <input class="form-control form-control-sm" ngModel name="imagen" id="imagen" type="url" placeholder="Ingrese la URL de la imagen" aria-label=".form-control-sm example">
+                        </div>
+                        <!-- ... -->
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModalEstudio" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Editar Nivel de Estudio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #editForm="ngForm" (ngSubmit)="onEditEstudios(editForm)">
+                        <!-- ... -->
+                        <div class="mb-3">
+                            <label for="estudioFormControl" class="form-label">{{editEstudios.nombre}}</label>
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.nombre}}" name="nombre" id="nombre" type="text" min="{{editEstudios.nombre}}" value="{{editEstudios.nombre}}" aria-label=".form-control-sm example">
+                            <input type="hidden" class="form-control form-control-sm" ngModel="{{editEstudios.id}}" name="id" id="id" min="{{editEstudios.id}}" value="{{editEstudios.id}}" aria-label=".form-control-sm example">
+                        </div>
+                        <div class="mb-3">
+                            <label for="estudioFormControl" class="form-label">Posicion {{editEstudios.titulo}}</label>
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.titulo}}" name="titulo" id="titulo" type="text" min="{{editEstudios.titulo}}" value="{{editEstudios.titulo}}" aria-label=".form-control-sm example">
+                        </div>
+                        <div class="mb-3">
+                            <label for="estudioFormControl" class="form-label">Fecha Inicio {{editEstudios.fechaInicio}}</label>
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.fechaInicio}" name="fechaInicio" id="fechaInicio" type="date" min="{{editEstudios.fechaInicio}" value="{{editEstudios.fechaInicio}" aria-label=".form-control-sm example">
+                        </div>
+                        <div class="mb-3">
+                            <label for="estudioFormControl" class="form-label">Fecha Desvinculación {{editEstudios.fechaFin}}</label>
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.fechaFin}" name="fechaFin" id="fechaFin" type="date" min="{{editEstudios.fechaFin}" value="{{editEstudios.fechaFin}" aria-label=".form-control-sm example">
+                        </div>
+                        <div class="mb-3">
+                            <label for="estudioFormControl" class="form-label">Promedio Logrado</label>
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.promedio}" name="promedio" id="promedio" type="text" min="{{editEstudios.promedio}" value="{{editEstudio.promedio}" aria-label=".form-control-sm example">
+                        </div>
+                        <div class="mb-3">
+                            <label for="estudioFormControl" class="form-label">URL Imagen</label>
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.imagen}" name="imagen" id="imagen" type="url" min="{{editEstudios.imagen}}" value="{{editEstudios.imagen}}" aria-label=".form-control-sm example">
+                        </div>
+                        <!-- ... -->
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Del Modal -->
+
+<div class="modal" tabindex="-1" id="delModalEstudio">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Borrar Nivel de Estudoi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar el estudio realizado en {{editEstudios.nombre}}?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, cancelar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelEstudios()">Si, eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
