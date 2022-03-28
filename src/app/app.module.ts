@@ -13,6 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EstudiosComponent } from './componentes/estudios/estudios.component';
 import { HabilidadesComponent } from './componentes/habilidades/habilidades.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-sesion.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
     AcercadeComponent,
     EstudiosComponent,
     HabilidadesComponent,
-    NavbarComponent
+    NavbarComponent,
+    IniciarSesionComponent
   ],
   imports: [
     BrowserModule,

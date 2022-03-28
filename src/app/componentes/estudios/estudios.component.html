@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="card mb-3" style="max-width: 840px;" *ngFor="let estu of estudios">
+    <div class="card mb-3" style="max-width: 1000px ;" *ngFor="let estu of estudios">
         <div class="row g-0">
             <div class="col-md-2">
                 <img src="{{estu.imagen}}" class="img-fluid rounded-start" alt="...">
@@ -27,8 +27,8 @@
             <div class="col-md-10">
                 <div class="card-body">
                     <div class="row">
-                        <h4 class="col-md-10 card-title">Titulo: {{estu.titulo}}</h4>
-                        <div class="col-md-2">
+                        <h4 class="col-md-9 card-title">Titulo: {{estu.titulo}}</h4>
+                        <div class="col-md-3">
                             <a class="btn btn-right" data-bs-toggle="modal" data-bs-target="#editModalEstudio" (click)="onGetEstudios(estu)">
                                 <i class="fa fa-pencil"></i>
                             </a>
@@ -133,7 +133,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="estudioFormControl" class="form-label">Promedio Logrado</label>
-                            <input class="form-control form-control-sm" ngModel="{{editEstudios.promedio}" name="promedio" id="promedio" type="text" min="{{editEstudios.promedio}" value="{{editEstudio.promedio}" aria-label=".form-control-sm example">
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.promedio}" name="promedio" id="promedio" type="text" min="{{editEstudios.promedio}" value="{{editEstudios.promedio}" aria-label=".form-control-sm example">
                         </div>
                         <div class="mb-3">
                             <label for="estudioFormControl" class="form-label">URL Imagen</label>
