@@ -9,7 +9,8 @@ import { NgForm } from '@angular/forms';
 })
 export class EmpleadorService {
 
-  private apiUrl = "http://localhost:8080"
+  private localUrl = "http://localhost:8080"
+  private apiUrl = "https://fdetcv.herokuapp.com/"
 
   constructor( private http:HttpClient  ) { }
 

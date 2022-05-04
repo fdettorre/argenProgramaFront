@@ -8,8 +8,8 @@ import { map } from 'rxjs/operators';
 })
 export class AutenticacionService {
   
-  url ="http://localhost:4200/auth";
-  private apiUrl = "http://localhost:8080/auth"
+  localUrl ="http://localhost:8080/auth";
+  private apiUrl = "https://fdetcv.herokuapp.com/auth"
   currentUserSubject: BehaviorSubject<any>;
 
   constructor(private http:HttpClient) {
