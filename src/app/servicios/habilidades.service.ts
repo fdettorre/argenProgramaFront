@@ -8,7 +8,8 @@ import { Habilidad } from '../modelos/habilidad';
 })
 export class HabilidadesService {
 
-  private apiUrl = "http://localhost:8080"
+  private localUrl = "http://localhost:8080"
+  private apiUrl = "https://fdetcv.herokuapp.com"
 
   constructor( private http:HttpClient  ) { }
 

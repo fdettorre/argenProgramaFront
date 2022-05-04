@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 export class EstudiosService {
 
   private localUrl = "http://localhost:8080"
-  private apiUrl = "https://fdetcv.herokuapp.com/"
+  private apiUrl = "https://fdetcv.herokuapp.com"
 
   constructor( private http:HttpClient  ) { }
 
