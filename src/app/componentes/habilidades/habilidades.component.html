@@ -13,7 +13,7 @@
         <div class="col-md-10">
             Aptitudes y habilidades
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2" *ngIf="isLogged">
             <a class="btn btn-right" data-bs-toggle="modal" data-bs-target="#addModal">
                 <i class="fa fa-plus"></i>
             </a>
@@ -27,7 +27,7 @@
                 <div class="col-md-9">
                     <p>{{habilidad.nombre}}</p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" *ngIf="isLogged">
                     <a class="btn btn-right" data-bs-toggle="modal" data-bs-target="#editModal" (click)="onGetHabilidad(habilidad)">
                         <i class="fa fa-pencil"></i>
                     </a>

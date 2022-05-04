@@ -22,8 +22,8 @@ export class HabilidadesService {
   }
 
   public editarHabilidad (editForm: any): Observable<Habilidad> {
-    console.log(`${this.apiUrl}/edit/habilidad`, editForm);
     return this.http.put<Habilidad>(`${this.apiUrl}/edit/habilidad`, editForm);
+    // console.log(`${this.apiUrl}/edit/habilidad`, editForm);
   }
 
   borrarHabilidad(habilidadId: any): Observable <void>{

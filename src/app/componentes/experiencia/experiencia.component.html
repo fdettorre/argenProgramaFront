@@ -12,7 +12,7 @@
         <div class="col-md-10">
             <h5> Detalle de experiencia laboral </h5>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2" *ngIf="isLogged">
             <a class="btn btn-right" data-bs-toggle="modal" data-bs-target="#addModalExperiencia">
                 <i class="fa fa-plus"></i>
             </a>
@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <div class="row">
                             <h4 class="col-md-9 card-title">{{traba.nombre}}</h4>
-                            <div class="col-md-3">
+                            <div class="col-md-3" *ngIf="isLogged">
                                 <a class="btn btn-right" data-bs-toggle="modal" data-bs-target="#editModalExperiencia" (click)="onGetExperiencia(traba)">
                                     <i class="fa fa-pencil"></i>
                                 </a>
@@ -131,19 +131,19 @@
                         </div>
                         <div class="mb-3">
                             <label for="experienciaFormControl" class="form-label">Fecha Inicio {{editexperiencia.fechaInicio}}</label>
-                            <input class="form-control form-control-sm" ngModel="{{editexperiencia.fechaInicio}" name="fechaInicio" id="fechaInicio" type="date" min="{{editexperiencia.fechaInicio}" value="{{editexperiencia.fechaInicio}" aria-label=".form-control-sm example">
+                            <input class="form-control form-control-sm" ngModel="{{editexperiencia.fechaInicio}}" name="fechaInicio" id="fechaInicio" type="date" min="{{editexperiencia.fechaInicio}" value="{{editexperiencia.fechaInicio}" aria-label=".form-control-sm example">
                         </div>
                         <div class="mb-3">
                             <label for="experienciaFormControl" class="form-label">Fecha Desvinculación {{editexperiencia.fechaFin}}</label>
-                            <input class="form-control form-control-sm" ngModel="{{editexperiencia.fechaFin}" name="fechaFin" id="fechaFin" type="date" min="{{editexperiencia.fechaFin}" value="{{editexperiencia.fechaFin}" aria-label=".form-control-sm example">
+                            <input class="form-control form-control-sm" ngModel="{{editexperiencia.fechaFin}}" name="fechaFin" id="fechaFin" type="date" min="{{editexperiencia.fechaFin}" value="{{editexperiencia.fechaFin}" aria-label=".form-control-sm example">
                         </div>
                         <div class="mb-3">
                             <label for="experienciaFormControl" class="form-label">Tareas Realizadas</label>
-                            <input class="form-control form-control-sm" ngModel="{{editexperiencia.tareas}" name="tareas" id="tareas" type="text" min="{{editexperiencia.tareas}}" value="{{editexperiencia.tareas}}" aria-label=".form-control-sm example">
+                            <input class="form-control form-control-sm" ngModel="{{editexperiencia.tareas}}" name="tareas" id="tareas" type="text" min="{{editexperiencia.tareas}}" value="{{editexperiencia.tareas}}" aria-label=".form-control-sm example">
                         </div>
                         <div class="mb-3">
                             <label for="experienciaFormControl" class="form-label">URL Imagen</label>
-                            <input class="form-control form-control-sm" ngModel="{{editexperiencia.imagen}" name="imagen" id="imagen" type="url" min="{{editexperiencia.imagen}}" value="{{editexperiencia.imagen}}" aria-label=".form-control-sm example">
+                            <input class="form-control form-control-sm" ngModel="{{editexperiencia.imagen}}" name="imagen" id="imagen" type="url" min="{{editexperiencia.imagen}}" value="{{editexperiencia.imagen}}" aria-label=".form-control-sm example">
                         </div>
                         <!-- ... -->
 

@@ -14,14 +14,14 @@ export class EstudiosService {
   constructor( private http:HttpClient  ) { }
 
   public listaEstudios(): Observable<Educacion[]> {
-    console.log("Servicio obtener estudios corriendo");
+    // console.log("Servicio obtener estudios corriendo");
     return this.http.get<Educacion[]>(`${this.apiUrl}/ver/estudios`);
     
   }
 
   public agregarEstudios (addForm: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/new/estudios`, addForm);
-    console.log("Servicio agregar empleadores");
+    // console.log("Servicio agregar empleadores");
   }
 
   public editarEstudios (editForm: NgForm): Observable<Educacion> {

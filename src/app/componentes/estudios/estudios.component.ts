@@ -15,13 +15,23 @@ export class EstudiosComponent implements OnInit {
   editEstudios: Educacion = {id:0, nombre:"", titulo:"", imagen:"", 
                             fechaInicio: new Date, fechaFin:new Date, promedio:""};
 
+  isLogged = false;
+
   constructor( private edu:EstudiosService) { }
 
   ngOnInit(): void {
     this.edu.listaEstudios().subscribe(data =>{
       this.estudios = data;
-      console.log(this.estudios);
+      // console.log(this.estudios);
     });
+
+    if (sessionStorage.getItem('currentUser')){
+      this.isLogged = true
+    }
+    else {
+      this.isLogged = false
+    }
+
   }
 
   refresh() {
@@ -52,13 +62,13 @@ export class EstudiosComponent implements OnInit {
     this.edu.editarEstudios(editForm.value).subscribe((data) =>
     this.refresh());
     editForm.reset();
-    console.log("edit");
+    // console.log("edit");
   }
 
   onDelEstudios() {
     this.edu.borrarEstudios(this.editEstudios.id).subscribe((data)=> 
     this.refresh());
-    console.log("deleteeee");
+    // console.log("deleteeee");
   }
 
 }

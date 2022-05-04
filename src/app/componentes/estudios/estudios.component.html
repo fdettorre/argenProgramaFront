@@ -12,7 +12,7 @@
         <div class="col-md-10">
             <h5>Títulos y certificados</h5>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2" *ngIf="isLogged">
             <a class="btn btn-right" data-bs-toggle="modal" data-bs-target="#addModalEstudio">
                 <i class="fa fa-plus"></i>
             </a>
@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <div class="row">
                         <h4 class="col-md-9 card-title">Titulo: {{estu.titulo}}</h4>
-                        <div class="col-md-3">
+                        <div class="col-md-3" *ngIf="isLogged">
                             <a class="btn btn-right" data-bs-toggle="modal" data-bs-target="#editModalEstudio" (click)="onGetEstudios(estu)">
                                 <i class="fa fa-pencil"></i>
                             </a>
@@ -125,19 +125,19 @@
                         </div>
                         <div class="mb-3">
                             <label for="estudioFormControl" class="form-label">Fecha Inicio {{editEstudios.fechaInicio}}</label>
-                            <input class="form-control form-control-sm" ngModel="{{editEstudios.fechaInicio}" name="fechaInicio" id="fechaInicio" type="date" min="{{editEstudios.fechaInicio}" value="{{editEstudios.fechaInicio}" aria-label=".form-control-sm example">
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.fechaInicio}}" name="fechaInicio" id="fechaInicio" type="date" min="{{editEstudios.fechaInicio}" value="{{editEstudios.fechaInicio}" aria-label=".form-control-sm example">
                         </div>
                         <div class="mb-3">
                             <label for="estudioFormControl" class="form-label">Fecha Desvinculación {{editEstudios.fechaFin}}</label>
-                            <input class="form-control form-control-sm" ngModel="{{editEstudios.fechaFin}" name="fechaFin" id="fechaFin" type="date" min="{{editEstudios.fechaFin}" value="{{editEstudios.fechaFin}" aria-label=".form-control-sm example">
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.fechaFin}}" name="fechaFin" id="fechaFin" type="date" min="{{editEstudios.fechaFin}" value="{{editEstudios.fechaFin}" aria-label=".form-control-sm example">
                         </div>
                         <div class="mb-3">
                             <label for="estudioFormControl" class="form-label">Promedio Logrado</label>
-                            <input class="form-control form-control-sm" ngModel="{{editEstudios.promedio}" name="promedio" id="promedio" type="text" min="{{editEstudios.promedio}" value="{{editEstudios.promedio}" aria-label=".form-control-sm example">
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.promedio}}" name="promedio" id="promedio" type="text" min="{{editEstudios.promedio}" value="{{editEstudios.promedio}" aria-label=".form-control-sm example">
                         </div>
                         <div class="mb-3">
                             <label for="estudioFormControl" class="form-label">URL Imagen</label>
-                            <input class="form-control form-control-sm" ngModel="{{editEstudios.imagen}" name="imagen" id="imagen" type="url" min="{{editEstudios.imagen}}" value="{{editEstudios.imagen}}" aria-label=".form-control-sm example">
+                            <input class="form-control form-control-sm" ngModel="{{editEstudios.imagen}}" name="imagen" id="imagen" type="url" min="{{editEstudios.imagen}}" value="{{editEstudios.imagen}}" aria-label=".form-control-sm example">
                         </div>
                         <!-- ... -->
 

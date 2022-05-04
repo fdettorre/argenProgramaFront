@@ -1,11 +1,89 @@
-<form>
-    <div class="mb-3">
-        <label for="inputEmail" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+<div class="container-sm">
+
+    <h1 class="m-5">
+        Iniciar Sesión</h1>
+    <form [formGroup]="form" class="form-outline m-5" (ngSubmit)="onEnviar($event)">
+        <div class="mb-3">
+            <label for="inputUser" class="form-label">Usuario</label>
+            <input type="text" class="form-control" formControlName="nombreUsuario" id="userIniciarSesion" aria-describedby="userHelp">
+            <!-- Control de errores -->
+            <div *ngIf="NombreUsuario?.errors && NombreUsuario?.touched">
+                <p *ngIf="NombreUsuario?.hasError('required')" class="text-danger">
+                    El usuario es requerido
+                </p>
+                <!-- <p *ngIf="user?.hasError('user')" class="text-danger">
+                El formato debe ser válido
+            </p> -->
+            </div>
+            <!-- CIerre control de errores -->
+        </div>
+        <div class="mb-3">
+            <label for="inputPass" class="form-label">Password</label>
+            <input type="password" class="form-control" formControlName="password" id="passwordIniciarSesion">
+            <!-- Control de errores -->
+            <div *ngIf="Password?.errors && Password?.touched">
+                <p *ngIf="Password?.hasError('required')" class="text-danger">
+                    El password es requerido
+                </p>
+                <p *ngIf="Password?.errors" class="text-danger">
+
+                </p>
+            </div>
+            <!-- CIerre control de errores -->
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-4">
+
+                <button type="submit" class="btn btn-primary btn-space">Login</button>
+            </div>
+            <div class="col-4">
+
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModalRegister">Registrarse</button>
+            </div>
+        </div>
+
+    </form>
+
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModalRegister" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUsuario">Agregar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #addForm="ngForm" (ngSubmit)="onRegister(addForm)">
+                        <!-- ... -->
+                        <div class="mb-3 form-group">
+                            <label for="nombreUsuario" class="form-label">Nombre</label>
+                            <input class="form-control form-control-sm" ngModel name="nombre" id="nombre" type="text" placeholder="Escriba el nombre del usuario" aria-label=".form-control-sm example" required>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="nombreUsuario" class="form-label">Usuario</label>
+                            <input class="form-control form-control-sm" ngModel name="nombreUsuario" id="nombreUsuario" type="text" placeholder="Escriba el nombre de usuario" aria-label=".form-control-sm example" required>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input class="form-control form-control-sm" ngModel name="email" id="email" type="email" placeholder="Escriba su email" aria-label=".form-control-sm example">
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input class="form-control form-control-sm" ngModel name="password" id="password" type="password" placeholder="Ingrese una contraseña" aria-label=".form-control-sm example">
+                        </div>
+                        <!-- ... -->
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="inputPass" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+
+</div>

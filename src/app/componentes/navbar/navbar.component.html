@@ -7,8 +7,8 @@
 
         <div class="collapse navbar-collapse  justify-content-end" id="navbarTogglerDemo03">
             <form class="d-flex">
-                <button class="btn btn-outline-success " type="submit">Login</button>
-                <button class="btn btn-outline-danger " type="submit">Logout</button>
+                <button class="btn btn-outline-success " type="submit" (click)="logIn()" *ngIf="!isLogged">Login</button>
+                <button class="btn btn-outline-danger " type="submit" (click)="logOut()" *ngIf="isLogged">Logout</button>
             </form>
         </div>
     </div>

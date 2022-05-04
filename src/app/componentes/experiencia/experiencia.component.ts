@@ -3,6 +3,8 @@ import { EmpleadorService } from '../../servicios/empleador.service';
 import { Empleador } from 'src/app/modelos/empleador';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { InterceptorService } from 'src/app/servicios/interceptor.service';
+import { AutenticacionService } from '../../servicios/autenticacion.service';
 
 @Component({
   selector: 'app-experiencia',
@@ -15,16 +17,33 @@ export class ExperienciaComponent implements OnInit {
   editexperiencia: Empleador = {id:0, nombre:"", email:"", telefono:"", 
                   titulo:"", imagen:"", fechaInicio:new Date, fechaFin:new Date, cuit:"", tareas:""}
 
-  constructor( private es:EmpleadorService) {
+  isLogged = false;
+  rolAdmin = false;
 
+  constructor( private es:EmpleadorService, private as:AutenticacionService) {
+    
    }
 
   ngOnInit(): void {
   
     this.es.listaEmpleadores().subscribe(data =>{
       this.trabajos = data;
-      console.log(this.trabajos);
+      // console.log(this.trabajos);
     });
+    
+    
+    if (this.as.UsuarioAutenticado.authorities[0].authority == "ROLE_ADMIN"){
+      this.rolAdmin=true;
+    }
+   
+
+
+    if (sessionStorage.getItem('currentUser')){
+      this.isLogged = true
+    }
+    else {
+      this.isLogged = false
+    }
   }
 
   refresh() {
@@ -54,12 +73,15 @@ export class ExperienciaComponent implements OnInit {
     this.es.editarEmpleadores(editForm.value).subscribe((data) =>
     this.refresh());
     editForm.reset();
-    console.log("edit");
+    // console.log("edit");
   }
 
   onDelExperiencia() {
     this.es.borrarEmpleadores(this.editexperiencia.id).subscribe((data)=> 
     this.refresh());
-    console.log("deleteeee");
+    // console.log("deleteeee");
   }
+
+
+
 }
