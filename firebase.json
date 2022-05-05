@@ -6,16 +6,17 @@
             "**/.*",
             "**/node_modules/**"
         ],
-
         "headers": [{
-                "source": "**",
-                "headers": [{
-                    "key": "Access-Control-Allow-Origin",
-                    "value": "*"
-                }],
-                "rewrites": [{
-                    "source": "**",
-                    "destination": "/index.html"
-                }]
-            }
-        }
+            "source": "**",
+            "headers": [{
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
+            }]
+        }],
+
+        "rewrites": [{
+            "source": "**",
+            "destination": "/index.html"
+        }]
+    }
+}
